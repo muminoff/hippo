@@ -5,47 +5,37 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-
 <head>
   <title>Hippo.uz</title>
-
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-touch-fullscreen" content="yes">
   <meta charset="UTF-8" />
-
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/icons.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/hippo.css' %}">
 </head>
-
 <body>
   <!--[if lt IE 7]>
     <p class="chromeframe" style="background:#eee; padding:10px; width:100%">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
   <![endif]-->
 
   <div class="flakes-frame">
-
     <div class="flakes-navigation">
-
       <a href="index.html" class="logo">
         <img src="{% static 'img/logo.png' %}" width="120">
       </a>
-
       {% include "sidebar.html" %}
       {% include "footer.html" %}
-
     </div>
 
     <div class="flakes-content">
-
       <div class="flakes-mobile-top-bar">
         <a href="#" class="logo-wrap">
           <img src="{% static 'img/logo.png' %}" height="30px">
         </a>
-
         <a href="" class="navigation-expand-target">
           <img src="{% static 'img/site-wide/navigation-expand-target.png' %}" height="26px">
         </a>
@@ -54,17 +44,16 @@
       <div class="view-wrap">
         {% block content %}{% endblock %}
       </div>
+
     </div>
   </div>
 
-
   <link rel="stylesheet" type="text/css" href="{% static 'css/gridforms.css' %}">
-
   <script src="{% static 'js/jquery.js' %}"></script>
   <script src="{% static 'js/snap.js' %}"></script>
   <script src="{% static 'js/responsive-elements.js' %}"></script>
   <script src="{% static 'js/gridforms.js' %}"></script>
-
   <script src="{% static 'js/base.js' %}"></script>
+
 </body>
 </html>
