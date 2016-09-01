@@ -20,40 +20,40 @@ var ie_version = function() {
 var isMobileDevice = (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i)
 	.test(navigator.userAgent);
 
-var FlakesFrame = {
+var HippoFrame = {
 	init: function() {
 		// DOM element map
 		this.el = {
 			body: $('body'),
-			navigation_expand_target: $('.flakes-mobile-top-bar .navigation-expand-target'),
-			flakes_frame: {
-				container: $('.flakes-frame'),
-				navigation: $('.flakes-frame .flakes-navigation'),
-				content: $('.flakes-frame .flakes-content')
+			navigation_expand_target: $('.hippo-mobile-top-bar .navigation-expand-target'),
+			hippo_frame: {
+				container: $('.hippo-frame'),
+				navigation: $('.hippo-frame .hippo-navigation'),
+				content: $('.hippo-frame .hippo-content')
 			}
 		};
 		this.events();
 	},
 	equalizeHeights: function() {
 		var tallestColumn = Math.max(
-			this.el.flakes_frame.navigation.outerHeight(),
-			this.el.flakes_frame.content.outerHeight()
+			this.el.hippo_frame.navigation.outerHeight(),
+			this.el.hippo_frame.content.outerHeight()
 		);
 
-		this.el.flakes_frame.navigation.outerHeight(tallestColumn);
-		this.el.flakes_frame.content.outerHeight(tallestColumn);
+		this.el.hippo_frame.navigation.outerHeight(tallestColumn);
+		this.el.hippo_frame.content.outerHeight(tallestColumn);
 	},
 	dumbSnappingFallback: function() {
 		var that = this;
 		this.el.navigation_expand_target.click(function() {
-			that.el.flakes_frame.navigation.css({
+			that.el.hippo_frame.navigation.css({
 				'z-index': '10'
 			}).show();
 			return false;
 		});
 
-		this.el.flakes_frame.content.click(function() {
-			that.el.flakes_frame.navigation.hide();
+		this.el.hippo_frame.content.click(function() {
+			that.el.hippo_frame.navigation.hide();
 		});
 	},
 	setupSnapping: function() {
@@ -62,7 +62,7 @@ var FlakesFrame = {
 		}
 
 		var snapper = new Snap({
-			element: this.el.flakes_frame.content[0],
+			element: this.el.hippo_frame.content[0],
 			disable: 'right',
 			maxPosition: 250,
 			minPosition: -250
@@ -93,5 +93,5 @@ var FlakesFrame = {
 
 // Initialize modules when DOM is ready
 jQuery(function() {
-	FlakesFrame.init();
+	HippoFrame.init();
 });
