@@ -7,7 +7,7 @@ from fabric.api import cd
 
 env.hosts = ['hippo.uz']
 env.user = 'hippo'
-env.key_filename = 'secrets/ssh_keys/hippo.pem'
+env.key_filename = 'secrets/keys/hippo.pem'
 
 
 GITHUB = 'git@github.com:muminoff/hippo.git'
