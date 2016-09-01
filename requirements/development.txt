@@ -3,3 +3,4 @@
 flake8==3.0.4
 model-mommy==1.2.6
 bpython==0.15
+django-debug-toolbar==1.5

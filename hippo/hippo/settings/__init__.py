@@ -2,6 +2,7 @@ import os
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.join(BASE_DIR, '..')
 SECRET_KEY = 'rm#g$6+51r6=fhbo9opq+yyt+)x8fg7(%85!v5a3kxhjc&e-on'
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -61,6 +62,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'collected_static')
+STATICFILES_DIRS = (os.path.join(PROJECT_DIR, 'static'),)
 INSTALLED_APPS.append('core')
