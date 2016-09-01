@@ -1,0 +1,29 @@
+[
+{
+    "model": "core.service",
+    "pk": 1,
+    "fields": {
+        "name": "Free",
+        "price": "0.00",
+        "space": 1073741824
+    }
+},
+{
+    "model": "core.service",
+    "pk": 2,
+    "fields": {
+        "name": "5GB",
+        "price": "3000.00",
+        "space": 5368709120
+    }
+},
+{
+    "model": "core.service",
+    "pk": 3,
+    "fields": {
+        "name": "10GB",
+        "price": "5000.00",
+        "space": 10737418240
+    }
+}
+]

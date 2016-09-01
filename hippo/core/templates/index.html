@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+        <h1><span class="icon-browser"></span>&nbsp; {% trans "Барча файллар" %}</h1>
+				<div class="grid-1 gutter-40">
+					<div class="span-1">
+						<table class="flakes-table" style="width:100%">
+							<colgroup>
+								<col span="1" style="width:20px" />
+								<col span="3" style="width:80%" />
+							</colgroup>
+							<thead>
+								<tr>
+								  <th><input type="checkbox"></th>
+                  <th>{% trans "Номи" %}</th>
+                  <th>{% trans "Тури" %}</th>
+                  <th>{% trans "Ўзгартирилган вақти" %}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+								  <td><input type="checkbox"></td>
+								  <td>foobar.txt</td>
+								  <td>Text</td>
+								  <td>Бугун соат 12:32 да</td>
+								</tr>
+								<tr>
+								  <td><input type="checkbox"></td>
+								  <td>foobar.txt</td>
+								  <td>Text</td>
+								  <td>Бугун соат 12:32 да</td>
+								</tr>
+								<tr>
+								  <td><input type="checkbox"></td>
+								  <td>foobar.txt</td>
+								  <td>Text</td>
+								  <td>Бугун соат 12:32 да</td>
+								</tr>
+								<tr>
+								  <td><input type="checkbox"></td>
+								  <td>foobar.txt</td>
+								  <td>Text</td>
+								  <td>Бугун соат 12:32 да</td>
+								</tr>
+								<tr>
+								  <td><input type="checkbox"></td>
+								  <td>foobar.txt</td>
+								  <td>Text</td>
+								  <td>Бугун соат 12:32 да</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+{% endblock %}

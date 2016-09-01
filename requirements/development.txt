@@ -1,0 +1,5 @@
+-r default.txt
+
+flake8==3.0.4
+model-mommy==1.2.6
+bpython==0.15
