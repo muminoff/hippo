@@ -52,3 +52,7 @@ local_settings.py
 db.sqlite3
 media
 .DS_Store
+secrets/keys/*.pem
+secrets/notes/*.gpg
+secrets/notes/*.asc
+secrets/env/*.env
