@@ -3,19 +3,28 @@
 {% block title %}{% trans "Login" %}{% endblock %}
 {% block content %}
 {% if form.errors %}
-<p>{{ form.non_field_errors }}</p>
+<p class="hippo-message error">{{ form.errors }}</p>
 {% endif %}
-<form method="post" action="">
-    {% csrf_token %}
-    <table>
-        <tr>
-            <td><label for="id_username">{% trans "Username" %}:</label></td><td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td><label for="id_password">{% trans "Password" %}:</label></td><td>{{ form.password }}</td>
-        </tr>
-    </table>
-    <input type="submit" value="{% trans "Login" %}" />
-    <input type="hidden" name="next" value="{{ next }}" />
-</form>
+<div class="grid-2 gutter-20">
+  <div class="span-1">
+    <fieldset>
+      <legend>Тизимга кириш</legend>
+      <form method="post" action="">
+          {% csrf_token %}
+          <table>
+              <tr>
+                  <td><label for="id_username">{% trans "Логин" %}:</label></td>
+                  <td>{{ form.username }}</td>
+              </tr>
+              <tr>
+                  <td><label for="id_password">{% trans "Пароль" %}:</label></td>
+                  <td>{{ form.password }}</td>
+              </tr>
+          </table>
+          <input class="button-darkblue" type="submit" value="{% trans "Кириш" %}" />
+          <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+    </fieldset>
+  </div>
+</div>
 {% endblock %}
