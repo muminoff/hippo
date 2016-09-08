@@ -20,9 +20,9 @@ class LoginView(FormView):
 
     def get(self, request):
 
-        # if request.user and request.user.is_authenticated():
-        #     return HttpResponseRedirect(
-        #         request.GET.get('next', reverse('workspace')))
+        if request.user and request.user.is_authenticated():
+            return HttpResponseRedirect(
+                request.GET.get('next', reverse('workspace')))
 
         return super(LoginView, self).get(request)
 
