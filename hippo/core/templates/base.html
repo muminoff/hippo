@@ -27,8 +27,10 @@
       <a href="index.html" class="logo">
         <img src="{% static 'img/logo.png' %}" width="120">
       </a>
+      {% if request.user.is_authenticated %}
       {% include "sidebar.html" %}
       {% include "footer.html" %}
+      {% endif %}
     </div>
 
     <div class="hippo-content">

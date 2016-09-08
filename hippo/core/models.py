@@ -5,7 +5,21 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.template import defaultfilters
 
-# Choices
+# Misc
+import uuid
+
+
+# Object storage
+class Bucket:
+
+    @staticmethod
+    def generate_bucket_id():
+        while True:
+            bucket = str(uuid.uuid4()).replace('-', '')
+            if not Profile.objects.filter(bucket=bucket).exists():
+                return bucket
+
+# Storage choices
 STORAGE_SPACE_CHOICES = (
     (536870912, '512mb'),
     (1073741824, '1gb'),
@@ -30,6 +44,10 @@ class Service(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     service = models.ForeignKey('Service', default=1)
+    bucket = models.CharField(
+        max_length=63,
+        default=Bucket.generate_bucket_id,
+        editable=False)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
