@@ -4,9 +4,15 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.template import defaultfilters
+from django.conf import settings
 
 # Misc
 import uuid
+
+# Boto3
+import boto3
+import boto3.session
+from botocore.exceptions import ClientError
 
 
 # Object storage
@@ -51,5 +57,19 @@ class Profile(models.Model):
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
+
         if created:
+            # Create default profile with default service plan
             Profile.objects.create(user=instance)
+
+            # Create default bucket
+            session = boto3.session.Session()
+            s3client = session.client(
+                's3',
+                endpoint_url=settings.BACKEND_ENDPOINT_URL)
+
+            try:
+                s3client.create_bucket(Bucket=instance.profile.bucket)
+            except ClientError as e:
+                print(str(e))
+                pass
