@@ -3,27 +3,36 @@
     "model": "core.service",
     "pk": 1,
     "fields": {
-        "name": "Free",
+        "name": "512mb",
         "price": "0.00",
-        "space": 1073741824
+        "space": 536870912
     }
 },
 {
     "model": "core.service",
     "pk": 2,
     "fields": {
-        "name": "5GB",
+        "name": "1gb",
         "price": "3000.00",
-        "space": 5368709120
+        "space": 1073741824
     }
 },
 {
     "model": "core.service",
     "pk": 3,
     "fields": {
-        "name": "10GB",
+        "name": "2gb",
         "price": "5000.00",
-        "space": 10737418240
+        "space": 2147483648
+    }
+},
+{
+    "model": "core.service",
+    "pk": 4,
+    "fields": {
+        "name": "5gb",
+        "price": "10000.00",
+        "space": 5368709120
     }
 }
 ]

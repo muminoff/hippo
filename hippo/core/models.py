@@ -7,16 +7,20 @@ from django.template import defaultfilters
 
 # Choices
 STORAGE_SPACE_CHOICES = (
-    (1073741824, '1GB'),
-    (5368709120, '5GB'),
-    (10737418240, '10GB'),
+    (536870912, '512mb'),
+    (1073741824, '1gb'),
+    (2147483648, '2gb'),
+    (3221225472, '3gb'),
+    (4294967296, '4gb'),
+    (5368709120, '5gb'),
+    (10737418240, '10gb'),
 )
 
 
 class Service(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=12, decimal_places=2)
-    space = models.BigIntegerField(choices=STORAGE_SPACE_CHOICES, default=1073741824) # noqa
+    space = models.BigIntegerField(choices=STORAGE_SPACE_CHOICES, default=536870912) # noqa
 
     def __str__(self):
         return "{} ({})".format(
