@@ -1,0 +1,20 @@
+{% load staticfiles i18n %}
+{% block title %}{% trans "Login" %}{% endblock %}
+{% block content %}
+{% if form.errors %}
+<p>{{ form.non_field_errors }}</p>
+{% endif %}
+<form method="post" action="">
+  {% csrf_token %}
+  <table>
+    <tr>
+      <td><label for="id_username">{% trans "Username" %}:</label></td><td>{{ form.username }}</td>
+    </tr>
+    <tr>
+      <td><label for="id_password">{% trans "Password" %}:</label></td><td>{{ form.password }}</td>
+    </tr>
+  </table>
+  <input type="submit" value="{% trans "Login" %}" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+{% endblock %}
