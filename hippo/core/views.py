@@ -1,8 +1,11 @@
+# Django
 from django.views.generic import TemplateView, FormView, View
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.http import HttpResponseRedirect
+
+# Boto3
 
 
 class IndexView(TemplateView):

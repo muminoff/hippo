@@ -1,5 +1,11 @@
 {% load i18n %}
+    {% if request.user.is_authenticated %}
     <p class="foot">
-    Эшмат Тошматов<br>
+    {{ request.user }}<br>
     <a href="">{% trans "Созламалар" %}</a> &bullet; <a href="{% url "logout" %}">{% trans "Чиқиш" %}</a>
     </p>
+    {% else %}
+    <p class="foot">
+    <a href="{% url "login" %}">{% trans "Кириш" %}</a>
+    </p>
+    {% endif %}
