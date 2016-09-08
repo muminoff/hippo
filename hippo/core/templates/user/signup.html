@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Аъзо бўлиш" %}{% endblock %}
+{% block content %}
+{% if form.errors %}
+<p class="hippo-message error">{{ form.errors }}</p>
+{% endif %}
+<div class="grid-2 gutter-20">
+  <div class="span-1">
+    <fieldset>
+      <legend>Аъзо бўлиш</legend>
+      <form method="post" action="">
+          {% csrf_token %}
+          <table>
+              <tr><td><label for="id_username">{% trans "Логин" %}:</label></td><td>{{ form.username }}</td></tr>
+              <tr><td><label for="id_username">{% trans "Исм" %}:</label></td><td>{{ form.first_name }}</td></tr>
+              <tr><td><label for="id_username">{% trans "Фамилия" %}:</label></td><td>{{ form.last_name }}</td></tr>
+              <tr><td><label for="id_username">{% trans "Эл. почта" %}:</label></td><td>{{ form.email }}</td></tr>
+              <tr><td><label for="id_password">{% trans "Пароль" %}:</label></td><td>{{ form.password }}</td></tr>
+              <tr><td><label for="id_password2">{% trans "Пароль (қайта)" %}:</label></td><td>{{ form.password2 }}</td></tr>
+          </table>
+
+          <input class="button-darkblue" type="submit" value="{% trans "Юбориш" %}" />
+          <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+    </fieldset>
+  </div>
+</div>
+{% endblock %}
