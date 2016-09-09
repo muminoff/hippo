@@ -75,6 +75,18 @@ class S3Account(models.Model):
                 print(str(e))
                 pass
 
+    def get_buckets(self):
+        session = boto3.session.Session()
+        s3client = session.client(
+            's3',
+            use_ssl=False,
+            endpoint_url=settings.BACKEND_ENDPOINT_URL,
+            aws_access_key_id=self.key_id,
+            aws_secret_access_key=self.key_secret)
+
+        response = s3client.list_buckets()
+        return [bucket['Name'] for bucket in response['Buckets']]
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
