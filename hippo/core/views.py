@@ -97,7 +97,12 @@ class IndexView(TemplateView):
                 endpoint_url=settings.BACKEND_ENDPOINT_URL)
 
             response = s3client.list_objects(
-                Bucket=self.request.user.profile.bucket)
+                Bucket=self.request.user.username)
+
+            if 'Contents' not in response:
+                context['objects'] = list()
+                return context
+
             context['objects'] = response['Contents']
             return context
 

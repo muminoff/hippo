@@ -6,24 +6,14 @@ from django.contrib.auth.models import User
 from django.template import defaultfilters
 from django.conf import settings
 
-# Misc
-import uuid
-
 # Boto3
 import boto3
 import boto3.session
 from botocore.exceptions import ClientError
 
+# Misc
+import uuid
 
-# Object storage
-class Bucket:
-
-    @staticmethod
-    def generate_bucket_id():
-        while True:
-            bucket = str(uuid.uuid4()).replace('-', '')
-            if not Profile.objects.filter(bucket=bucket).exists():
-                return bucket
 
 # Storage choices
 STORAGE_SPACE_CHOICES = (
@@ -47,13 +37,45 @@ class Service(models.Model):
             self.name, defaultfilters.filesizeformat(self.space))
 
 
+class S3Account(models.Model):
+    id = models.TextField(primary_key=True)
+    key_id = models.TextField()
+    key_secret = models.TextField()
+    status = models.TextField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    @receiver(post_save, sender=User)
+    def create_s3_account(sender, instance, created, **kwargs):
+
+        if created:
+            import requests
+            import json
+            url = settings.BACKEND_ENDPOINT_URL + '/riak-cs/user'
+            data = {'email': instance.email, 'name': instance.get_full_name()}
+            response = requests.post(url, json=data)
+            response_dict = json.loads(response.text)
+            S3Account.objects.create(
+                user=instance,
+                id=response_dict['id'],
+                key_id=response_dict['key_id'],
+                key_secret=response_dict['key_secret'],
+                status=response_dict['status'])
+
+            # session = boto3.session.Session()
+            # s3client = session.client(
+            #     's3',
+            #     endpoint_url=settings.BACKEND_ENDPOINT_URL)
+
+            # try:
+            # s3client.create_bucket(Bucket=str(uuid.uuid4()))
+            # except ClientError as e:
+            #     print(str(e))
+            #     pass
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     service = models.ForeignKey('Service', default=1)
-    bucket = models.CharField(
-        max_length=63,
-        default=Bucket.generate_bucket_id,
-        editable=False)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -61,15 +83,3 @@ class Profile(models.Model):
         if created:
             # Create default profile with default service plan
             Profile.objects.create(user=instance)
-
-            # Create default bucket
-            session = boto3.session.Session()
-            s3client = session.client(
-                's3',
-                endpoint_url=settings.BACKEND_ENDPOINT_URL)
-
-            try:
-                s3client.create_bucket(Bucket=instance.profile.bucket)
-            except ClientError as e:
-                print(str(e))
-                pass

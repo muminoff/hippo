@@ -9,8 +9,12 @@ def main():
         's3',
         endpoint_url='http://192.168.99.100:8080')
 
-    # response = s3client.list_objects(Bucket='d826d38d2c7442dcb6ddd49f43491e7e')
-    # print(response['Contents'])
+    response = s3client.list_buckets()
+    bucket = response['Buckets'][0]['Name']
+    objects = s3client.list_objects(Bucket=bucket)
+
+    for obj in objects['Contents']:
+        print(obj['LastModified'], obj['Key'], obj['Size'])
 
     # response = s3client.get_bucket_location(Bucket='d826d38d2c7442dcb6ddd49f43491e7e')
     # print(response)
