@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-        <h1>{% trans "Барча файллар" %}</h1>
-        <div class="hippo-search">
-          <input class="search-box" placeholder="{% trans "Қидирув" %}" autofocus>
+        <div class="hippo-actions-bar">
+          <a class="action button-blue smaller" href="">{% trans "Янги папка" %}</a>
+          <a class="action button-gray smaller" href="">{% trans "Кўчириш" %}</a>
+          <a class="action button-magenta smaller right" href="">{% trans "Ўчириш" %}</a>
+          <a class="action button-green smaller right" href="">{% trans "Юклаб олиш" %}</a>
         </div>
         <div class="grid-1 gutter-40">
           <div class="span-1">
             <table class="hippo-table" style="width:100%">
               <colgroup>
-                <col span="1" style="width:80px" />
+                <col span="1" style="width:80%" />
                 <col span="2" style="width:20%" />
               </colgroup>
               <thead>
