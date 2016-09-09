@@ -101,13 +101,10 @@ class IndexView(TemplateView):
 
             response = s3client.list_buckets()
             bucket = response['Buckets'][0]['Name']
-            response = s3client.list_objects(Bucket=bucket)
+            response = s3client.list_objects(Bucket=bucket, Delimiter='/')
+            print(response)
 
-            if 'Contents' not in response:
-                context['objects'] = list()
-                return context
-
-            context['objects'] = response['Contents']
+            context['objects'] = response
             return context
 
 
