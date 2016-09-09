@@ -5,7 +5,7 @@
 {% if form.errors %}
 <p class="hippo-message error">{{ form.errors }}</p>
 {% endif %}
-<div class="grid-2 gutter-20">
+<div class="grid-3 gutter-20">
   <div class="span-1">
     <fieldset>
       <legend>Аъзо бўлиш</legend>
@@ -19,8 +19,7 @@
               <tr><td><label for="id_password">{% trans "Пароль" %}:</label></td><td>{{ form.password }}</td></tr>
               <tr><td><label for="id_password2">{% trans "Пароль (қайта)" %}:</label></td><td>{{ form.password2 }}</td></tr>
           </table>
-
-          <input class="button-darkblue" type="submit" value="{% trans "Юбориш" %}" />
+          <input class="button-darkblue massive" type="submit" value="{% trans "Юбориш" %}" />
           <input type="hidden" name="next" value="{{ next }}" />
       </form>
     </fieldset>
