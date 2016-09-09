@@ -7199,6 +7199,13 @@ table.hippo-table {
     border-bottom: none; }
   table.hippo-table tbody tr.selected td {
     background-color: #fffded; }
+  table.hippo-table tbody td > a {
+    text-decoration: none;
+    color: #177BBD; }
+  table.hippo-table tbody td > a:hover {
+      text-decoration: none;
+      background-color: #177BBD;
+      color: #ECF0F1; }
   @media only screen and (min-width: 0) and (max-width: 900px) {
     table.hippo-table.responsive tr td {
       display: none; }
