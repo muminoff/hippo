@@ -24,7 +24,7 @@
               <tbody>
                 {% for object in objects.CommonPrefixes %}
                 <tr>
-                  <td>{{ object.Prefix }}</td>
+                  <td><a href="">{{ object.Prefix|slice:":-1" }}</a></td>
                   <td>—</td>
                   <td>—</td>
                 </tr>
