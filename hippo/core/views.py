@@ -103,8 +103,13 @@ class IndexView(TemplateView):
             # response = s3client.list_buckets()
             # bucket = response['Buckets'][0]['Name']
 
+            root = self.request.GET.get('dir')
             bucket = self.request.user.s3account.get_buckets()[0]
-            response = s3client.list_objects(Bucket=bucket, Delimiter='/')
+            if root:
+                response = s3client.list_objects(Bucket=bucket, Delimiter='/', Prefix=root + '/')
+            else:
+                response = s3client.list_objects(Bucket=bucket, Delimiter='/')
+
             print(response)
 
             context['objects'] = response
