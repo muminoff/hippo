@@ -5975,7 +5975,7 @@ form textarea {
 .hippo-frame .hippo-navigation {
   float: left;
   border-right: 1px solid #e9e9e9;
-  width: 250px;
+  width: 200px;
   min-height: 100vh;
   padding: 50px 0 30px;
   font-size: 14px;
@@ -6040,7 +6040,7 @@ form textarea {
         display: none; }
         .hippo-frame .hippo-navigation > ul > li > ul > li {
           background: #F9F9F9;
-          border-top: 1px solid #f1f1f1; }
+          border-top: 2px solid #f1f1f1; }
 .hippo-frame .hippo-content {
   float: left;
   width: 100%;
