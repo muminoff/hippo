@@ -7,6 +7,11 @@ from django.http import HttpResponseRedirect
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
+
+# Boto3 
+import boto3
+import boto3.session
 
 
 class SignupForm(forms.ModelForm):
@@ -78,6 +83,23 @@ class SignupForm(forms.ModelForm):
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+
+    def get(self, request):
+        return super(IndexView, self).get(request)
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+
+        if self.request.user.is_authenticated():
+            session = boto3.session.Session()
+            s3client = session.client(
+                's3',
+                endpoint_url=settings.BACKEND_ENDPOINT_URL)
+
+            response = s3client.list_objects(
+                Bucket=self.request.user.profile.bucket)
+            context['objects'] = response['Contents']
+            return context
 
 
 class LoginView(FormView):

@@ -9,13 +9,8 @@ def main():
         's3',
         endpoint_url='http://192.168.99.100:8080')
 
-    try:
-        response = s3client.list_buckets()
-    except ClientError as e:
-        print(str(e))
-
-    for bucket in response['Buckets']:
-        print(bucket['Name'], bucket['CreationDate'])
+    response = s3client.list_objects(Bucket='d826d38d2c7442dcb6ddd49f43491e7e')
+    print(response['Contents'])
 
 
 if __name__ == '__main__':

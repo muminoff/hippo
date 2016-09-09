@@ -16,25 +16,19 @@
                 <tr>
                   <th>{% trans "Номи" %}</th>
                   <th>{% trans "Тури" %}</th>
+                  <th>{% trans "Ҳажми" %}</th>
                   <th>{% trans "Ўзгартирилган вақти" %}</th>
                 </tr>
               </thead>
               <tbody>
+                {% for object in objects %}
                 <tr>
-                  <td><span class="icon icon-folder"></span>&nbsp; Mening papkam</td>
-                  <td>{% trans "Папка" %}</td>
-                  <td>Кеча соат 10:04 да</td>
+                  <td>{{ object.Key }}</td>
+                  <td>{% trans "Файл" %}</td>
+                  <td>{{ object.Size|filesizeformat }}</td>
+                  <td>{{ object.LastModified }}</td>
                 </tr>
-                <tr>
-                  <td><span class="icon icon-file"></span>&nbsp; foobar.txt</td>
-                  <td>{% trans "Матнли файл" %}</td>
-                  <td>Бугун соат 12:32 да</td>
-                </tr>
-                <tr>
-                  <td><span class="icon icon-file"></span>&nbsp; foobar.txt</td>
-                  <td>{% trans "Матнли файл" %}</td>
-                  <td>Бугун соат 12:32 да</td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
