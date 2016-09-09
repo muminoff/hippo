@@ -94,7 +94,10 @@ class IndexView(TemplateView):
             session = boto3.session.Session()
             s3client = session.client(
                 's3',
-                endpoint_url=settings.BACKEND_ENDPOINT_URL)
+                use_ssl=False,
+                endpoint_url=settings.BACKEND_ENDPOINT_URL,
+                aws_access_key_id=self.request.user.s3account.key_id,
+                aws_secret_access_key=self.request.user.s3account.key_secret)
 
             response = s3client.list_objects(
                 Bucket=self.request.user.username)
