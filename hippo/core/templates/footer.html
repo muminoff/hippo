@@ -2,7 +2,7 @@
     {% if request.user.is_authenticated %}
     <p class="foot">
     {{ request.user.get_full_name }}<br>
-    <a href="">{% trans "Созламалар" %}</a> &bullet; <a href="{% url "logout" %}">{% trans "Чиқиш" %}</a>
+    <a href="{% url "settings" %}">{% trans "Созламалар" %}</a> &bullet; <a href="{% url "logout" %}">{% trans "Чиқиш" %}</a>
     </p>
     {% else %}
     <p class="foot">

@@ -107,6 +107,10 @@ class IndexView(TemplateView):
             return context
 
 
+class SettingsView(TemplateView):
+    template_name = 'user/settings.html'
+
+
 class LoginView(FormView):
     template_name = 'user/login.html'
     form_class = AuthenticationForm

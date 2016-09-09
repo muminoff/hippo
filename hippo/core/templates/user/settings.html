@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<h1>Созламалар</h1>
+	<h3>Қуйидаги калитларни эҳтиёт қилинг.</h3>
+	<br>
+	<div class="grid-4 gutter-20">
+		<div class="span-4">
+			<fieldset class="flakes-information-box">
+				<legend>API Keys</legend>
+
+				<div class="grid-4">
+					<dl class="span-2">
+						<dt>Username</dt>
+            <dd>{{ request.user.username }}</dd>
+					</dl>
+					<dl class="span-2">
+						<dt>Status</dt>
+            <dd>{{ request.user.s3account.status }}</dd>
+					</dl>
+				</div>
+				<div class="grid-4">
+					<dl class="span-2">
+						<dt>Access Key</dt>
+            <dd>{{ request.user.s3account.key_id }}</dd>
+					</dl>
+					<dl class="span-2">
+						<dt>Secret Access Key</dt>
+            <dd>{{ request.user.s3account.key_secret }}</dd>
+					</dl>
+				</div>
+				<dl>
+					<dt>ID</dt>
+          <dd>{{ request.user.s3account.id }}</dd>
+				</dl>
+			</fieldset>
+		</div>
+	</div>
+{% endblock %}
