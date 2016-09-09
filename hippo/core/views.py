@@ -99,8 +99,9 @@ class IndexView(TemplateView):
                 aws_access_key_id=self.request.user.s3account.key_id,
                 aws_secret_access_key=self.request.user.s3account.key_secret)
 
-            response = s3client.list_objects(
-                Bucket=self.request.user.username)
+            response = s3client.list_buckets()
+            bucket = response['Buckets'][0]['Name']
+            response = s3client.list_objects(Bucket=bucket)
 
             if 'Contents' not in response:
                 context['objects'] = list()

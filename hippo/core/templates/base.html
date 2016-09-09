@@ -22,7 +22,7 @@
 
   <div class="hippo-frame">
     <div class="hippo-navigation">
-      <a href="index.html" class="logo">
+        <a href="{% url "workspace" %}" class="logo">
         <img src="{% static 'img/logo.png' %}" width="120">
       </a>
       {% if request.user.is_authenticated %}

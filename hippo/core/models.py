@@ -61,16 +61,19 @@ class S3Account(models.Model):
                 key_secret=response_dict['key_secret'],
                 status=response_dict['status'])
 
-            # session = boto3.session.Session()
-            # s3client = session.client(
-            #     's3',
-            #     endpoint_url=settings.BACKEND_ENDPOINT_URL)
+            session = boto3.session.Session()
+            s3client = session.client(
+                's3',
+                use_ssl=False,
+                endpoint_url=settings.BACKEND_ENDPOINT_URL,
+                aws_access_key_id=response_dict['key_id'],
+                aws_secret_access_key=response_dict['key_secret'])
 
-            # try:
-            # s3client.create_bucket(Bucket=str(uuid.uuid4()))
-            # except ClientError as e:
-            #     print(str(e))
-            #     pass
+            try:
+                s3client.create_bucket(Bucket=str(uuid.uuid4()))
+            except ClientError as e:
+                print(str(e))
+                pass
 
 
 class Profile(models.Model):

@@ -9,13 +9,12 @@
           <div class="span-1">
             <table class="hippo-table" style="width:100%">
               <colgroup>
-                <col span="1" style="width:20px" />
-                <col span="2" style="width:80%" />
+                <col span="1" style="width:80px" />
+                <col span="2" style="width:20%" />
               </colgroup>
               <thead>
                 <tr>
                   <th>{% trans "Номи" %}</th>
-                  <th>{% trans "Тури" %}</th>
                   <th>{% trans "Ҳажми" %}</th>
                   <th>{% trans "Ўзгартирилган вақти" %}</th>
                 </tr>
@@ -24,7 +23,6 @@
                 {% for object in objects %}
                 <tr>
                   <td>{{ object.Key }}</td>
-                  <td>{% trans "Файл" %}</td>
                   <td>{{ object.Size|filesizeformat }}</td>
                   <td>{{ object.LastModified }}</td>
                 </tr>
