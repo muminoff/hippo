@@ -99,8 +99,11 @@ class IndexView(TemplateView):
                 aws_access_key_id=self.request.user.s3account.key_id,
                 aws_secret_access_key=self.request.user.s3account.key_secret)
 
-            response = s3client.list_buckets()
-            bucket = response['Buckets'][0]['Name']
+            # FIXME: detect if user has no buckets created
+            # response = s3client.list_buckets()
+            # bucket = response['Buckets'][0]['Name']
+
+            bucket = self.request.user.s3account.get_buckets()[0]
             response = s3client.list_objects(Bucket=bucket, Delimiter='/')
             print(response)
 
