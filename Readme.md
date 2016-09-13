@@ -1,9 +1,12 @@
 # Hippo
 
-![screenshot](screenshot.jpg)
+![screenshot](frontend/mockup/signup.png)
+![screenshot](frontend/mockup/login.png)
+![screenshot](frontend/mockup/reset.png)
+![screenshot](frontend/mockup/home.png)
 
 # Лойиҳа ҳақида
-Tas-IX тармоғи учун очиқ-кодли булутли файл-хостинг сервис
+Tas-IX тармоғи учун булутли файл-хостинг сервис
 
 ## Талаблар
  * Riak CS 2.1.1
