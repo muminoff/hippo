@@ -1,5 +1,7 @@
 # Hippo
 
+## Фойдаланувчи интерфейси (UI) макетлари
+
 ![screenshot](frontend/mockup/signup.png)
 ![screenshot](frontend/mockup/login.png)
 ![screenshot](frontend/mockup/reset.png)
