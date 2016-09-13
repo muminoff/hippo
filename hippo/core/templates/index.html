@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n humanize %}
 {% block content %}
         <div class="hippo-actions-bar">
           <a class="action button-blue smaller" href="">{% trans "Янги папка" %}</a>
@@ -22,7 +22,23 @@
                 </tr>
               </thead>
               <tbody>
-                {% for object in objects.CommonPrefixes %}
+                  {{ directories }}
+                {% for directory in directories %}
+                <tr>
+                  <td><a href="{% url "workspace" %}?dir={{ directory }}">{{ directory }}</a></td>
+                  <td>—</td>
+                  <td>—</td>
+                </tr>
+                {% endfor %}
+                {% for object in files %}
+                <tr>
+                  <td>{{ object.Key }}</td>
+                  <td>{{ object.Size|filesizeformat }}</td>
+                  <td>{{ object.LastModified|naturaltime }}</td>
+                </tr>
+                {% endfor %}
+                {% comment %}
+                {% for object in objects.CommonPrefixes|dictsort:"Prefix" %}
                 <tr>
                     <td><a href="{% url "workspace" %}?dir={{ object.Prefix|slice:":-1" }}">{{ object.Prefix|slice:":-1" }}</a></td>
                   <td>—</td>
@@ -33,9 +49,10 @@
                 <tr>
                   <td>{{ object.Key }}</td>
                   <td>{{ object.Size|filesizeformat }}</td>
-                  <td>{{ object.LastModified }}</td>
+                  <td>{{ object.LastModified|naturaltime }}</td>
                 </tr>
                 {% endfor %}
+                {% endcomment %}
               </tbody>
             </table>
           </div>

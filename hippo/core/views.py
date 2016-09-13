@@ -103,16 +103,44 @@ class IndexView(TemplateView):
             # response = s3client.list_buckets()
             # bucket = response['Buckets'][0]['Name']
 
-            root = self.request.GET.get('dir')
+            directory = self.request.GET.get('dir')
             bucket = self.request.user.s3account.get_buckets()[0]
-            if root:
-                response = s3client.list_objects(Bucket=bucket, Delimiter='/', Prefix=root + '/')
+            isroot = True
+
+            if directory:
+                response = s3client.list_objects(
+                    Bucket=bucket,
+                    Delimiter='/',
+                    Prefix=directory + '/')
+                isroot = False
             else:
-                response = s3client.list_objects(Bucket=bucket, Delimiter='/')
+                isroot = True
+                response = s3client.list_objects(
+                    Bucket=bucket,
+                    Delimiter='/')
 
-            print(response)
+            directories = list()
+            files = list()
 
-            context['objects'] = response
+            if 'CommonPrefixes' in response:
+                for prefix in response.get('CommonPrefixes'):
+                    if isroot:
+                        dirname = prefix.get('Prefix').split('/')[0]
+                    else:
+                        dirname = prefix.get('Prefix').split('/')[1]
+
+                    directories.append(dirname)
+
+            if 'Contents' in response:
+                for fileobj in response.get('Contents', []):
+                    oldname = fileobj.get('Key')
+                    newname = oldname.split('/')[1]
+                    print(oldname, newname)
+                    fileobj.update({'Key': newname})
+                    files.append(fileobj)
+
+            context['directories'] = directories
+            context['files'] = files
             return context
 
 
