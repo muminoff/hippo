@@ -5,8 +5,8 @@ bucket_location = us-east-1
 use_https = False
 
 # Setup access keys
-access_key =  hippo
-secret_key = hippo
+access_key =  hippohippo
+secret_key = hippohippo
 
 # Enable S3 v4 signature APIs
 signature_v2 = False
